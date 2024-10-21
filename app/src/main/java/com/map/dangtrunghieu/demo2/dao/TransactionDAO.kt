@@ -18,8 +18,7 @@ class TransactionDAO(context: Context) {
         amount: Double,
         date: String,
         note: String,
-        cat: Category,
-        inOut: Int
+        catInOut: CatInOut
     ): Boolean {
         return dbHelper.addTransaction(
             Transaction(
@@ -27,7 +26,7 @@ class TransactionDAO(context: Context) {
                 amount = amount,
                 date = date,
                 note = note,
-                catInOut = dbHelper.getCatInoutByCatInout(cat.id, inOut)
+                catInOut = catInOut
             )
         )
     }

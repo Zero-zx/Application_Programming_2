@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:background="@color/bg_app"
     tools:context=".activity.AddActivity">
 
     <TextView
@@ -84,15 +85,24 @@
         app:layout_constraintStart_toEndOf="@id/tvCategory"
         app:layout_constraintTop_toTopOf="@id/tvCategory" />
 
+    <Button
+        android:id="@+id/btnAddCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spCategory" />
+
     <TextView
         android:id="@+id/tvAmount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="Amount"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvCategory"
+        app:layout_constraintTop_toBottomOf="@id/btnAddCategory"
         app:layout_constraintWidth_percent=".3" />
 
     <EditText
@@ -157,34 +167,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvNote" />
 
-<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--        android:id="@+id/clTime"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:background="@color/white"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/etDay">-->
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:id="@+id/clTime"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:background="@color/white"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/etDay">-->
 
-<!--        <DatePicker-->
-<!--            android:id="@+id/timePicker"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:visibility="visible"-->
-<!--            app:layout_constraintBaseline_toTopOf="@id/btnAddTime"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+    <!--        <DatePicker-->
+    <!--            android:id="@+id/timePicker"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="0dp"-->
+    <!--            android:visibility="visible"-->
+    <!--            app:layout_constraintBaseline_toTopOf="@id/btnAddTime"-->
+    <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--        <Button-->
-<!--            android:id="@+id/btnAddTime"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="16dp"-->
-<!--            android:backgroundTint="#EDEDED"-->
-<!--            android:elevation="16dp"-->
-<!--            android:text="GET DATE"-->
-<!--            android:textColor="@color/black"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent" />-->
-<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <!--        <Button-->
+    <!--            android:id="@+id/btnAddTime"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_margin="16dp"-->
+    <!--            android:backgroundTint="#EDEDED"-->
+    <!--            android:elevation="16dp"-->
+    <!--            android:text="GET DATE"-->
+    <!--            android:textColor="@color/black"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent" />-->
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

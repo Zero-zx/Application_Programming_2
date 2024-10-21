@@ -103,7 +103,10 @@ class DBHelper(context: Context) :
     @SuppressLint("Range")
     fun getAllTransactionByDay(): List<Transaction> {
         val db = this.readableDatabase
-        val cursor = db.rawQuery("SELECT * FROM $TABLE_TRANSACTION WHERE $TRANSACTION_DATE = date('now')", null)
+        val cursor = db.rawQuery(
+            "SELECT * FROM $TABLE_TRANSACTION WHERE $TRANSACTION_DATE = date('now')",
+            null
+        )
         val list = mutableListOf<Transaction>()
         while (cursor.moveToNext()) {
             val id = cursor.getInt(cursor.getColumnIndex(TRANSACTION_ID))
@@ -200,15 +203,16 @@ class DBHelper(context: Context) :
         return inOut
     }
 
-    fun insertCategory(category: Category) {
+    fun insertCategory(name: String, icon: String, note: String, parent: Category): Category {
         val db = this.writableDatabase
         val values = ContentValues()
-        values.put(CATEGORY_NAME, category.name)
-        values.put(CATEGORY_ICON, category.icon)
-        values.put(CATEGORY_NOTE, category.note)
-        values.put(CATEGORY_PARENT_ID, category.parent?.id ?: 0)
-        db.insert(TABLE_CATEGORY, null, values)
+        values.put(CATEGORY_NAME, name)
+        values.put(CATEGORY_ICON, icon)
+        values.put(CATEGORY_NOTE, note)
+        values.put(CATEGORY_PARENT_ID, parent.id)
+        val id = db.insert(TABLE_CATEGORY, null, values)
         db.close()
+        return Category(id.toInt(), name, icon, note, parent)
     }
 
     @SuppressLint("Range")
@@ -287,7 +291,7 @@ class DBHelper(context: Context) :
             val note = cursor.getString(cursor.getColumnIndex(CATEGORY_NOTE))
             val parent = cursor.getInt(cursor.getColumnIndex(CATEGORY_PARENT_ID))
 
-            Log.e("error", id.toString() +" " + name + " " + icon + " " + note + " " + parent)
+            Log.e("error", id.toString() + " " + name + " " + icon + " " + note + " " + parent)
             list.add(
                 Category(
                     id,
@@ -531,5 +535,41 @@ class DBHelper(context: Context) :
         db.insert(TABLE_INOUT, null, values)
 
         values.clear()
+    }
+
+    fun insertCatInOut(category: Category, inOutType: Int): CatInOut {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put(CATINOUT_CAT_ID, category.id)
+        values.put(CATINOUT_INOUT_ID, getInOutByType(inOutType).id)
+        val id = db.insert(TABLE_CATINOUT, null, values)
+        db.close()
+        return CatInOut(id.toInt(), category, getInOutByType(inOutType))
+    }
+
+    @SuppressLint("Range")
+    fun getAllCategory(): List<Category> {
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM $TABLE_CATEGORY", null)
+        val list = mutableListOf<Category>()
+        while (cursor.moveToNext()) {
+            val id = cursor.getInt(cursor.getColumnIndex(CATEGORY_ID))
+            val name = cursor.getString(cursor.getColumnIndex(CATEGORY_NAME))
+            val icon = cursor.getString(cursor.getColumnIndex(CATEGORY_ICON))
+            val note = cursor.getString(cursor.getColumnIndex(CATEGORY_NOTE))
+            val parent = cursor.getInt(cursor.getColumnIndex(CATEGORY_PARENT_ID))
+            list.add(
+                Category(
+                    id,
+                    name,
+                    icon,
+                    note,
+                    if (parent == 0) null else getCategoryById(parent)
+                )
+            )
+        }
+        cursor.close()
+        db.close()
+        return list
     }
 }
