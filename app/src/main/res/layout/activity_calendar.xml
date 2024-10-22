@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    tools:context=".activity.CalendarActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/exFiveAppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#479DF8">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="6dp">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="22dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_back"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/exFiveMonthYearText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="April 2018" />
+
+            <!--            <ImageView-->
+            <!--                android:id="@+id/exFiveNextMonthImage"-->
+            <!--                android:layout_width="36dp"-->
+            <!--                android:layout_height="36dp"-->
+            <!--                android:background="?attr/selectableItemBackgroundBorderless"-->
+            <!--                app:tint="@color/white"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent"-->
+            <!--                app:srcCompat="@drawable/ic_chevron_right" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.kizitonwose.calendar.view.CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#A6CEFF"
+            app:cv_dayViewResource="@layout/calendar_day"
+            app:cv_monthHeaderResource="@layout/calendar_header"
+            app:cv_outDateStyle="endOfGrid"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvTrans"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/clSwipe" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clSwipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#479DF8"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/calendarView">
+
+            <ImageView
+                android:id="@+id/exFivePreviousMonthImage"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="22dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_chevron_left"
+                app:tint="@color/white" />
+
+            <!--        <TextView-->
+            <!--            android:id="@+id/exFiveMonthYearText"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:fontFamily="sans-serif-medium"-->
+            <!--            android:textColor="@color/white"-->
+            <!--            android:textSize="22sp"-->
+            <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--            app:layout_constraintEnd_toStartOf="@id/exFiveNextMonthImage"-->
+            <!--            app:layout_constraintStart_toEndOf="@id/exFivePreviousMonthImage"-->
+            <!--            app:layout_constraintTop_toTopOf="parent"-->
+            <!--            tools:text="April 2018" />-->
+
+            <ImageView
+                android:id="@+id/exFiveNextMonthImage"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_chevron_right"
+                app:tint="@color/white" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

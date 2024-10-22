@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.map.dangtrunghieu.demo2.R
 import com.map.dangtrunghieu.demo2.databinding.TransactionItemBinding
 import com.map.dangtrunghieu.demo2.model.Transaction
+import com.map.dangtrunghieu.demo2.utils.showSimplifiedMoney
 
 class TransactionAdapter :
     ListAdapter<Transaction, TransactionAdapter.TransactionViewHolder>(TransactionDiffCallback) {
@@ -28,13 +29,13 @@ class TransactionAdapter :
         ViewHolder(binding.root) {
         fun bind(transaction: Transaction) {
             binding.tvTitle.text = transaction.name
-            binding.tvAmountValue.text = transaction.amount.toString()
+            binding.tvAmountValue.showSimplifiedMoney(transaction.amount)
             binding.ivIcon.setImageResource(
                 R.drawable.ic_work
             )
-            if(transaction.catInOut.inOut.type == 0){
+            if (transaction.catInOut.inOut.type == 0) {
                 binding.tvAmountValue.setTextColor(binding.root.context.resources.getColor(R.color.green))
-            }else{
+            } else {
                 binding.tvAmountValue.setTextColor(binding.root.context.resources.getColor(R.color.red))
             }
         }
